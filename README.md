@@ -1,11 +1,9 @@
 # The weather application
 
-## Practical Information
+* https://elighidiu.github.io/ajax-weather-api/
 
-* Repository: `ajax-weather-api`
-* Deadline: 2 days
-* Delivery: Github page (published)
-* Team: Solo
+* I learned to better structure my code and move the code from async function
+* I need to look more on how to work with date
 
 ## Learning Objectives
 
