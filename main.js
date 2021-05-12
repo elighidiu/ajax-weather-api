@@ -20,7 +20,7 @@
 
         console.log(response);
 
-        getCurrentWeather(response.data.city.name, response.data.list[0].main.temp); //displays the city name, temperature and date for current time
+        getCurrentWeather(response.data.city.name, response.data.list[0].main.temp, response.data.list[0].weather[0].icon); //displays the city name, temperature and date for current time
 
         //LINE 27 -> 53 HAVE BEEN REPLACED WITH FUNCTION displayDailyForecast
 
@@ -53,7 +53,8 @@
         // });
 
         displayFiveDaysForecast(response.data.list); //display daily weather information for each day
-        
+      
+
         } catch (error) {
         console.error(error);
         }
@@ -63,8 +64,30 @@
         for(let i=0; i<=4; i++){
             displayDate(i); // displays the date for each day 
             var filteredDate = filterDate(weatherData, i);
+            console.log(filteredDate);
+            displayAverage(filteredDate, i);
             filteredDate.forEach(element => displayForecast(element, i)); //foreach goes through each element in the date array created and displays the weather information
+          
        }
+    }
+
+    function getAverage(details){
+            let sum = 0;            
+            for(let i=0; i<details.length; i++){
+                sum += details[i].main.temp;
+            }
+            let average = Math.round((sum/details.length)*100)/100; //rounding the average to 2 decimals
+            console.log(sum);
+            console.log(average);
+        return average;
+    }
+
+    function displayAverage(details, index){
+        let card = document.getElementsByClassName("card")[index];
+        let heading = document.createElement("h3");
+        heading.innerHTML = `Daily average: ${getAverage(details)}&#8451;`;
+        card.appendChild(heading);
+
     }
 
     // get the input city from the user     
@@ -119,9 +142,17 @@
   } 
 
 
-  function getCurrentWeather(location, temperature){
-        document.getElementById("location").innerHTML=`${location} ${temperature}&#8451;`;
-        document.getElementById("date").innerText=`${formatDate(getCurrentDate(0))}`; // function formatDate takes as argument the date string returned by getCurrentDate function 
+  function getCurrentWeather(location, temperature, icon){
+    let card = document.querySelector(".cardMain");
+    let heading = document.createElement("h1");
+    heading.innerHTML=`${location} ${temperature}&#8451;`;
+        
+    let imageArea = document.createElement("img");
+    imageArea.src = `http://openweathermap.org/img/w/${icon}.png`;
+    imageArea.setAttribute("class", "weatherIcon");
+    
+    card.appendChild(heading);
+    card.appendChild(imageArea);
 
   }
 
@@ -138,14 +169,15 @@
      for(let i=0; i<=4; i++){
         document.getElementsByClassName("card")[i].innerHTML=""; 
      }
+     document.getElementsByClassName("cardMain")[0].innerHTML="";
       
   }
 
-  //this function creates the h2 element where the date will be displayed
+  //this function creates the h2 element where the date will be displayed in the individual daily cards
   function displayDate(index){
       let card = document.getElementsByClassName("card")[index]; //the index will be a value from 0 to 4 corresponding to the position in HTML doc
       let heading = document.createElement("h2");
-      heading.innerHTML = formatDate(getCurrentDate(index)); //takes the corresponding date, changes its format and adds it in the heading h2
+      heading.innerHTML = formatDate(getCurrentDate(index)); //takes the corresponding date, changes its format and adds it in the heading h2. 
       card.appendChild(heading);
   } 
   
