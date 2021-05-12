@@ -1,9 +1,11 @@
 # The weather application
+* in progress
 
 * https://elighidiu.github.io/ajax-weather-api/
 
 * I learned to better structure my code and move the code from async function
 * I need to look more on how to work with date
+* Need to work on media queries & css 
 
 ## Learning Objectives
 
