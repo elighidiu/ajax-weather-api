@@ -7,6 +7,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    flex-wrap: wrap;
    
 }
 
@@ -14,8 +15,8 @@ body {
     background-color:rgba(243, 243, 243, 0.3);
     margin: 30px;
     padding: 30px;
-    border-radius: 30px;
-    border:2px solid aquamarine;
+    border-radius: 10px;
+    border-style: hidden;
     
 }
 
@@ -23,10 +24,24 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
 
 }
 
 .weatherIcon {
     width: 50;
     height: 50;
+}
+
+.container-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+input, button {
+    padding: 15px 10;
+    border-radius: 10px;
+    border-style: hidden;
 }

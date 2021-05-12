@@ -18,7 +18,7 @@
         try {
         const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=f553ea1ef891582d4233868a79cc11e9`); // added units as metrics to display the temperature in Celsius as per api documentation
 
-        console.log(response);
+        //console.log(response);
 
         getCurrentWeather(response.data.city.name, response.data.list[0].main.temp, response.data.list[0].weather[0].icon); //displays the city name, temperature and date for current time
 
@@ -64,7 +64,7 @@
         for(let i=0; i<=4; i++){
             displayDate(i); // displays the date for each day 
             var filteredDate = filterDate(weatherData, i);
-            console.log(filteredDate);
+            //console.log(filteredDate);
             displayAverage(filteredDate, i);
             filteredDate.forEach(element => displayForecast(element, i)); //foreach goes through each element in the date array created and displays the weather information
           
@@ -77,8 +77,8 @@
                 sum += details[i].main.temp;
             }
             let average = Math.round((sum/details.length)*100)/100; //rounding the average to 2 decimals
-            console.log(sum);
-            console.log(average);
+            //console.log(sum);
+            //console.log(average);
         return average;
     }
 
@@ -141,7 +141,7 @@
     return filterInfo; //returns the array with the information filtered by date
   } 
 
-
+// this function gets the weather information for the current time
   function getCurrentWeather(location, temperature, icon){
     let card = document.querySelector(".cardMain");
     let heading = document.createElement("h1");
